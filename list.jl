@@ -4,283 +4,667 @@
 using Markdown
 using InteractiveUtils
 
-# ╔═╡ 397c92b0-553f-11ee-3cbf-55f2f86c3682
-#In Julia, you can perform iteration using various types of loops, including for loops and while loops. These loops allow you to repeat a sequence of code statements multiple times, making them suitable for tasks that require repetitive computation.
+# ╔═╡ 0639e686-52eb-4041-be8d-1d1b0aa70c0f
+using Random
 
-#Here's an overview of how to use these loops in Julia:
+# ╔═╡ 0b73ecf0-5bbc-11ee-1b47-6d66933f6971
+#In Julia, the equivalent of Python lists is called an Array. Arrays are also ordered, mutable collections of objects that can store various data types, including strings, numerical types, booleans, and other arrays, similar to Python lists.
 
-# ╔═╡ eca51be4-c289-4ab9-bb8f-0fe64e97655f
-#for Loops
-#A for loop is commonly used when you know the number of iterations in advance or when you want to iterate over elements in a collection (like an array, range, or dictionary).
+# ╔═╡ cd407dc6-fbd0-45c7-a871-cb359f6eafd9
+# Basic Idea:
+# In Julia, we use arrays to work with collections of data. An array is an ordered, mutable collection of objects.
+# Mutable means that we can change the contents of the array, such as adding or removing elements.
 
-# ╔═╡ 136b8793-c977-4a4e-a7d4-4c79a5211ec0
+# Julia arrays can store various data types, including strings, numerical types, booleans, and other arrays.
+# Unlike some other languages, Julia arrays have no set size, and we can dynamically add or remove elements as needed.
+
+# ╔═╡ 2bf54ecb-6ce8-4dbe-8b51-90bb38c0c63a
 begin
-	# Initialize a counter to control the loop
-	counter = 1
+	# List Creation:
+	# In Julia, we create arrays by enclosing elements in square brackets [].
 	
-	# Define the while loop with a condition to execute three times
-	while counter <= 3
-	    # Code inside the loop body
-	    println("Inside the loop - Iteration $counter")
+	# For example, we can create an array of strings with color names:
+	colors = ["orange", "red", "green", "blue", "yellow"]
+	println(colors)
+	println(typeof(colors))
 	
-	    # Increment the counter
-	    global counter += 1  # Increment the counter globally
+end
+
+# ╔═╡ 7ef5ce1d-f8e4-44eb-854c-1f7b8a719f00
+begin
+	#Lists are not limited to strings, however; we could also have a list with numerical values:
+	# Define an array of heights
+	heights = [67, 62.5, 69, 71, 72.5, 75]
+	
+	# Print the array
+	println(heights)
+end
+
+# ╔═╡ e2c175c8-d2f6-4512-a61a-7a0ba543965d
+#Notice that the previous list contains both float and int values. We could also have a list with an even wider range of types. For example, the following list has an int for its first element, a str for its second element, another list as its 3rd element, and a bool as its fourth element.
+
+# ╔═╡ 8061a35a-56c0-49c4-9a5a-a4a0deb66fe0
+begin
+	# Define a mixed array
+	mixed_list = [10, "lays bbq", [3.99, 4.49, 2.99], true]
+	
+	# Print the mixed array
+	println(mixed_list)
+end
+
+# ╔═╡ 1ad75f1f-4c2b-48d7-bf2b-acaf290624be
+#In Julia, you can create an empty array by using square brackets with no elements inside, just like in Python. Here's the equivalent Julia code:
+
+# ╔═╡ 6772d3f5-2887-418c-af20-0ea231c531af
+# ╠═╡ disabled = true
+#=╠═╡
+# Create an empty array in Julia
+countries = []
+  ╠═╡ =#
+
+# ╔═╡ a04bb6da-045a-42a4-868d-4e3b591ea171
+#In Julia, you can create a range of numbers using the 1:10 syntax and then convert it into an array using the collect() function to achieve the same result. 
+
+# ╔═╡ d2bfe3c6-ccd7-4da6-a51b-d409ac9ba592
+begin
+	# Create a range and convert it to an array
+	numbers = collect(1:10)
+	
+	# Print the array
+	println(numbers)
+	
+end
+
+# ╔═╡ 2c9288f8-d235-4239-b50a-c8f969678d07
+#In Julia, you can check if an element exists in an array using the in operator as well.
+
+# ╔═╡ 71506b30-e88d-4b5a-b28b-e9d57cd85e59
+begin
+	# Define the array
+	countries = ["Italy", "Mexico", "Canada", "USA", "South Africa", "Greece", "Spain"]
+	
+	# Check if an element exists in the array
+	println("Spain" in countries)
+	println("Australia" in countries)
+	
+end
+
+# ╔═╡ 99a71dc4-cb75-4d5d-9131-6e598858439d
+begin
+	#In Julia, you can create an empty array and add items to it using the push! function
+	#Push method
+	
+	# Add items to the array
+	push!(countries, "Italy")
+	push!(countries, "Mexico")
+	push!(countries, "Canada")
+	push!(countries, "USA")
+	push!(countries, "South Africa")
+	push!(countries, "Greece")
+	push!(countries, "Spain")
+	
+	# Print the array
+	println(countries)
+end
+
+# ╔═╡ c831cf0b-f199-4666-857d-2053abd1545c
+#In Julia, you can concatenate arrays using the vcat() function.
+
+# ╔═╡ ef253489-fc45-4615-9c1c-511418f13750
+begin
+	# Define two arrays
+	list1 = [-1, 0, 1]
+	list2 = [2, 3, 4]
+	
+	# Concatenate the arrays
+	list3 = vcat(list1, list2)
+	
+	# Print the original arrays and the concatenated array
+	println(list1)
+	println(list2)
+	println(list3)
+	
+end
+
+# ╔═╡ c8a18f7d-74ce-430b-b3d7-7fe1e5d023b7
+#In Julia, you can repeat an array using the repeat() function.
+
+# ╔═╡ 04efc640-0728-46d9-8cc7-0f508d94f5f3
+begin
+	
+	# Repeat the array three times
+	repeated = repeat(list1, 3)
+	
+	# Print the repeated array
+	println(repeated)
+	
+end
+
+# ╔═╡ e0053d27-ad77-4682-8c84-c37f86e9d850
+#In Julia, you can access individual elements in an array using square brackets as well. However, indexing in Julia starts at 1, not 0 as in Python. Here's how you can access elements in a Julia array
+
+# ╔═╡ 84ad8d12-67dd-4106-bad9-2601f1df379a
+begin
+	
+	# Access individual elements by index
+	println(countries)
+	println(countries[1])  # Access the 1st element (index 1)
+	println(countries[2])  # Access the 2nd element (index 2)
+	
+end
+
+# ╔═╡ e5e5343c-e5e0-4371-9233-ae239b976116
+#In Julia, you can use index notation to set a specific element in an array as well, and the index notation also starts at 1. Here's how you can modify an element in a Julia array
+
+# ╔═╡ 28202373-133f-495a-a6bb-560aa8829d58
+begin
+	# Modify the 3rd element (index 3)
+	countries[3] = "Argentina"
+	
+	# Print the updated array
+	println(countries)
+end
+
+# ╔═╡ d9eb6741-b448-4480-8954-f126213a7552
+#n addition to positive indices (which start at 0 with the beginning of the list), Julia also allows you to use negative indices, which work from the back of the list where [-1] is the last item, [-2] is the 2nd to last item, etc.
+
+# ╔═╡ 559d8b91-e651-4df2-ba50-9d1da131d371
+begin
+	# Access the last element using negative index
+	println(countries[end])  # Prints the last element
+	
+	# Access the second-to-last element using negative index
+	println(countries[end - 1])  # Prints the second-to-last element
+end
+
+# ╔═╡ 874872e1-4021-41f5-9a3a-e9b39b042674
+begin
+	#In Julia, you can work with lists of lists like this.
+	# Define a list of lists (nested list)
+	cities = [["Grand Rapids", "Detroit", "Traverse City"],
+	          ["Chicago", "Urbana-Champaign", "Peoria"],
+	          ["San Diego", "San Francisco", "Los Angeles", "Santa Barbara"]]
+	
+	# Access the entire sub-list at index 3
+	println(cities[3])  # Prints ["San Diego", "San Francisco", "Los Angeles", "Santa Barbara"]
+	
+	# Access an element within a sub-list using double indexing
+	ca = cities[3]
+	println(ca[2])  # Prints "San Francisco"
+	
+end
+
+# ╔═╡ ae68ed24-79e0-40c0-8377-5f2eceaa054b
+#In Julia, you can achieve the same result by using multiple square brackets for indexing within nested lists, 
+
+# ╔═╡ c2740605-8731-432d-a319-af344b956b0d
+begin
+		# Access an element within a sub-list using multiple indices
+	println(cities[3][2])  # Prints "San Francisco"
+	
+end
+
+# ╔═╡ ab1a25c0-8eac-4626-866e-c3c00fb02dcd
+#Slicing
+#In Julia, you can perform slicing on arrays using similar syntax as in Python.
+
+# ╔═╡ fd78989a-2fd4-46ff-824f-d5139b0cce62
+begin
+	# Slice from index 1 (inclusive) to 4 (exclusive)
+	println(countries[2:4])  # Prints ["Mexico", "Canada", "USA"]
+	
+	# Slice with a stride of 2
+	println(countries[2:4:2])  # Prints ["Mexico", "USA"]
+end
+
+# ╔═╡ acc1ab23-e13c-450a-b76f-303402c962b0
+begin
+	# Slice with negative start and stop
+	println(countries[end-1:-1:1])  # Prints ["Greece", "South Africa", "USA", "Canada", "Mexico"]
+	
+	# Slice with negative stride to reverse the list
+	println(countries[end:-1:1])  # Prints ["Spain", "Greece", "South Africa", "USA", "Canada", "Mexico", "Italy"]
+	
+end
+
+# ╔═╡ 0fd70abb-c1d7-43f8-bfed-3acde21d8b8f
+#Additionally, either (or both) start and stop can be left empty:
+
+#empty start -> start at the beginning
+#empty end -> go until very end
+
+# ╔═╡ b7d41a18-32fe-46d1-9c24-73282b694214
+begin
+	# Slice from the beginning to the end
+	println("all but first =", countries[2:end])  # Prints ["Mexico", "Canada", "USA", "South Africa", "Greece", "Spain"]
+	
+	# Slice from the beginning to all but the last element
+	println("all but last =", countries[1:end-1])  # Prints ["Italy", "Mexico", "Canada", "USA", "South Africa", "Greece"]
+	
+	# Reverse the list
+	println("reversed =", reverse(countries))  # Prints ["Spain", "Greece", "South Africa", "USA", "Canada", "Mexico", "Italy"]
+	
+end
+
+# ╔═╡ b7c5a894-4901-40fa-b3f4-0555b0d9c1f3
+#In Julia, you can achieve a similar operation using a for loop with the enumerate() function to get both the indices and values of a list. Here's how you can square the numbers in a list:
+
+# ╔═╡ 0c025a2d-75b1-45e8-9f00-e5fa9167a258
+begin
+	# Define a list of numbers
+	nums = [-2, 1, 2, 4]
+	
+	# Loop through the list using enumerate to get both indices and values
+	for (i, num) in enumerate(nums)
+	    nums[i] = num^2
 	end
 	
-	# Code after the loop
-	println("Outside the loop")
+	# Print the updated list
+	println(nums)
 	
 end
 
-# ╔═╡ 6661713b-56a5-49eb-aecf-512e2ec5282e
-#In Julia, the syntax for a while loop is similar to the one you described. You use the while keyword, followed by a condition followed by end.
+# ╔═╡ 798f9fb2-c00d-4b5d-8a7b-9f455ee70c9e
+#In Julia, you can achieve the same result using list comprehensions, which are a concise and elegant way to create lists by applying an operation to each element in a range or another iterable. Here's how you can create a list of squares for numbers up to 6 using a list comprehension:
 
-# ╔═╡ 3e10fc77-50c3-44ff-90e4-ebe5ab936269
-#The caution about infinite loops applies to Julia as well as Python (and many other programming languages). Infinite loops can lead to programs that never terminate, which is typically undesirable. You should always ensure that the loop condition will eventually become false to avoid infinite loops. 
-
-# ╔═╡ 0efae747-428c-402c-9d4a-6a5cdb65a6ac
-#Examples
-#Let's start by looking at a simple example. Let's start by just summing up numbers starting at one until the sum is greater than 20.
-
-# ╔═╡ 7f1f872d-7adb-43bc-b4d8-92dceb184f11
+# ╔═╡ ab95d9a1-8049-4182-b466-8ae96d30ff69
 begin
-# Initialize variables
-total = 0
-i = 1
-
-# Start the while loop
-while total <= 20
-    # Update the total by adding the current value of i
-    global total += i
-
-    # Print the current step
-    println("added ", i, " total =", total)
-
-    # Increment i for the next iteration
-    global i += 1  # Increment i globally
-end
+	# Create a list of squares for numbers up to 6
+	lstA = [i^2 for i in 0:6]
+	
+	# Print the list
+	println(lstA)
 	
 end
 
-# ╔═╡ 62abd8c4-d598-450a-904f-b4cfc62ac177
-#The first line in the loop total += i was pretty crucial. Consider what would have happened without that line. Would total have ever changed?
+# ╔═╡ 5ae34092-9e79-486f-a6ae-dadd02a64a5a
+#In Julia, you can achieve the same result using a list comprehension, which is a concise and elegant way to create lists by applying an operation to each element in a range or another iterable. Here's how you can create a list of squares for numbers up to 6 using a list comprehension:
 
-#Now let's look at a slighlty more complicated loop. Consider the problem of counting how many numbers even numbers starting at 2 you must sum in order for the sum to be greater than 100.
-
-# ╔═╡ 8974fa5e-207c-44ba-8127-a5fba729cdf9
+# ╔═╡ 0dee633a-07e8-4fc7-aea3-fa8608f7cc41
 begin
-	# Initialize variables
-	total2 = 2
-	count = 1
-	current = 4
+	# Create a list of squares for numbers up to 6
+	lstB = [x^2 for x in 0:6]
 	
-	# Start the while loop
-	while total2 <= 100
-	    # Update the total by adding the current value
-	    total2 += current
+	# Print the list
+	println(lstB)
 	
-	    # Increment the count
-	    count += 1
+end
+
+# ╔═╡ adcf7fac-92d8-4a4f-8ecb-c05b391b487c
+#In Julia, you can use list comprehensions with conditionals in a similar way to Python.
+
+# ╔═╡ e627a3e0-4ee8-4a5d-b3a0-b0425d6ebe72
+begin
+	# Create a list of squares that are odd for numbers up to 6
+	lstC = [x^2 for x in 0:6 if x % 2 == 1]
 	
-	    # Increment the current even number
-	    current += 2
+	# Print the list
+	println(lstC)
+	
+end
+
+# ╔═╡ e7780e39-f0c9-41f4-a528-4da814550f9f
+
+
+# ╔═╡ c98a577a-2076-42f4-b548-6ff9336c9980
+
+
+# ╔═╡ 15c4d5e3-42af-4236-8d56-96b14e66f93a
+begin
+	# Define an array
+	counts = [30, 25, 10, 14, 6]
+	
+	# Calculate the number of elements in the array
+	num_elements = length(counts)
+	println("Number of elements =", num_elements)
+	
+	# Calculate the sum of the elements in the array
+	array_sum = sum(counts)
+	println("Sum =", array_sum)
+	
+	# Find the minimum and maximum elements in the array
+	array_min = minimum(counts)
+	array_max = maximum(counts)
+	println("Min =", array_min)
+	println("Max =", array_max)
+	
+end
+
+# ╔═╡ 3d392bb6-3469-4bb4-b745-55520f5ea310
+begin
+	#In Julia, you can use similar methods to manipulate arrays (Julia's equivalent of Python lists).
+	# Define an array
+	names = ["Matt", "Luke", "Julia", "Miles", "Alice", "Paul", "Matt", "Mia"]
+	
+	# Add an element to the end of the array
+	push!(names, "Michelle")
+	println(names)
+	
+	# Insert an element at a specific index
+	insert!(names, 2, "John")
+	println(names)
+	
+end
+
+# ╔═╡ cb1927d8-84e5-4fde-ae79-acab60862496
+#In Julia, you can use similar methods to remove elements from arrays. Here are the equivalent methods for removing elements from an array in Julia:
+
+#Removing Elements:
+#splice!(array, index): Removes and returns the element at the specified index.
+#filter!(x -> x != element, array): Removes all elements equal to the specified element from the array.
+
+# ╔═╡ 75705798-4f72-4cda-9129-ce7d3554487c
+begin	
+	# Remove and return an element at a specific index
+	removed = splice!(names, 3)
+	println(removed)
+	println(names)
+	
+	# Remove all occurrences of a specific element
+	filter!(x -> x != "Luke", names)
+	println(names)
+	
+end
+
+# ╔═╡ defe3d22-2e83-45b3-a048-a5c127844a2b
+begin
+	#Finding the Index:
+	
+	#To find the index of the first element equal to x, you can use findfirst(isequal(x), array).
+	#Sorting:
+	
+	#To sort an array in place, you can use sort!(array).
+	#Counting Occurrences:
+	
+	#To count the number of times x occurs in an array, you can use count(==(x), array).
+	#Copying:
+	
+	#To make a copy of an array, you can use the copy() function.
+	
+	
+	# Finding the index of an element
+	location = findfirst(==( "Mia"), names)
+	println(location)
+	
+	# Sorting the array in place
+	sort!(names)
+	println(names)
+	
+	# Counting occurrences of an element
+	count_matt = count(==( "Matt"), names)
+	println(count_matt)
+	
+	# Making a copy of the array
+	names_copy = copy(names)
+	println(names_copy)
+	
+end
+
+# ╔═╡ a53d2b26-69ef-44c9-8e69-cffbcb7691d2
+#In Julia, you can check if two variables refer to the same object by comparing their memory addresses using the pointer function. If two variables reference the same object, their memory addresses will be the same. Here's how you can do it:
+
+# ╔═╡ 63d635ee-9f54-4545-b00a-b16ea5c9883e
+begin
+a = 1
+b = a
+
+println(a === b)
+
+b = 2
+
+println(a === b)	
+end
+
+# ╔═╡ 2e707bdc-6466-415f-8d18-dc6375b54c2b
+#In Julia, you can achieve similar behavior with arrays, but you'll need to be aware of the differences in how references and copying work.
+
+# ╔═╡ 173caa6f-3e11-4f62-9481-f0dd2d7c4ac7
+begin
+	lsta = [10, 12, 14]  # Create an array lsta
+	lstb = lsta         # Create a reference lstb that points to the same array as lsta
+	println(lsta)       # Print the array lsta
+	println(lstb)       # Print the array lstb (which is the same as lsta)
+	println(pointer(lsta), pointer(lstb), lsta === lstb)  # Print their pointers and check if they are the same object
+	lstb[1] = 8         # Modify the array using lstb
+	println(lsta)       # Print the modified array lsta
+	println(lstb)       # Print the modified array lstb (which is the same as lsta)
+	
+end
+
+# ╔═╡ 27a561f0-14da-44da-9c8a-6cf9fcea391a
+#To achieve a similar effect in Julia, you would need to use mutable objects, such as arrays, and pass them as arguments to functions.
+
+# ╔═╡ 9256d43c-73f8-4a1f-be26-7f99f2cd1778
+begin
+	function foo!(val1, val2)
+	    val1[] = val1[] * 2
+	    val2[] = val2[] * 2
 	end
 	
-	# Print the result
-	println("adding up ", count, " increasing even numbers gives sum greater than 100")
+	c = [3]
+	d = [4]
+	foo!(c, d)
+	println(c[1], " ", d[1])
 	
 end
 
-# ╔═╡ 91dc1414-3ad0-4c5a-8683-558cc87e0f11
-# In these examples, we were going upward towards our while condition, but we just as easily could have been decreasing some variable until it dropped below some value. Additionally, the condition in the while statement can be any boolean expression. It could involve negation (aka not) and/or could combine multiple boolean expressions with logical operators such as and, or. 
-
-# For instance, maybe we want to simulate a bank account to see how many days we can double the amount of money we take out until we either have taken out all of our money or are taking out $1000 per day. One approach to this could look like:
-
-
-# ╔═╡ 4d2c4cd2-f9fe-41d5-aa60-7397e7bc2ec6
+# ╔═╡ d27baca2-250a-4c26-82c5-3d4383229ba5
 begin
-	# Initialize variables
-	balance = 3000
-	withdrawal = 1
-	days = 0
-	
-	# Start the while loop
-	while !(balance <= 0) && withdrawal <= 1000
-	    # Update the balance by subtracting the withdrawal amount
-	    balance -= withdrawal
-	
-	    # Print the current step
-	    println("withdrew ", withdrawal, " balance = ", balance)
-	
-	    # Double the withdrawal amount
-	    withdrawal *= 2
-	
-	    # Increment the number of days
-	    days += 1
+	function bar!(lst1, lst2)
+	    lst1[1] = "it changed"
+	    lst2 = [7, 8, 9]
 	end
 	
-	# Print the total number of days
-	println("days = ", days)
+	alist = ["1", "2", "3"]
+	blist = ["4", "5", "6"]
+	bar!(alist, blist)
+	println(alist)
+	println(blist)
 	
 end
 
-# ╔═╡ 4a468da9-b1d7-45b5-9285-7296c94b7d93
-#n Julia, just like in Python, for loops allow us to perform repeated tasks. Unlike while loops, where we specify conditions to control the loop, in for loops, we directly specify the values for the loop variable to iterate over. The general structure of a for loop in Julia is as follows:
-#for val in sequence
-    # Loop body code
-#end
+# ╔═╡ 23e95ce7-cc2e-4b32-ae2b-d9a5104d1324
+#Special Functions with Lists - Revisiting Random Numbers
 
-# Other code outside the loop
-#Here, the term "sequence" does not necessarily refer to a variable named "sequence" but rather to any iterable or collection of values that can be looped through. In Julia, these are referred to as iterators, and they define a set of values and the order in which to iterate through them.
+# ╔═╡ eaf24d52-bf92-4fe6-8aa9-cfd7c0aefb16
+#In Julia, you can achieve a similar random sampling without replacement using the randperm function to generate random indices and then select elements from the list accordingly. Here's how you can do it:
 
-# ╔═╡ f5a4ce98-86ee-4df0-b58a-ca483bf7d268
-#Examples
-
-#Let's start by looking at a common example of a for loop in Julia, which is to loop a set number of times. This is often achieved using the 1:n range, where n is the number of times you want to loop.
-
-# ╔═╡ f7793643-eaa6-44d1-bc5d-2950f14de736
-for i in 1:5
-    println("hello")
-end
-
-# ╔═╡ 4ccb4a50-964b-4684-bd99-064f41303137
-#The above example was pretty simple, just saying "hello" 5 times. This example didn't even need to make use of the variable i, it the loop solely as a way of controlling how many times to run the statement inside the loop. While this sometimes occurs, it's often more frequent that we actually need to make use of the loop variable.
-
-# ╔═╡ 22e9bd21-6113-4c3e-8dd4-beef06728ce7
+# ╔═╡ cb03f6ae-f7a3-4b78-97e3-0e34a5cd13d8
 begin
-	tot = 0
-	for i in 0:5
-	    tot += i
-	    println("added", i, " tot = ", tot)
-	end
+	bag = ['r', 'r', 'b', 'g', 'o', 'o']
+	n = 3
+	
+	# Generate random indices without replacement
+	indices = randperm(length(bag))[1:n]
+	
+	# Select elements from the list using the generated indices
+	marbles = [bag[i] for i in indices]
+	
+	println(marbles)
+	
 end
 
-# ╔═╡ ce9427d8-8f51-4903-82eb-2b5641ec18fa
-#Note that i took on the values, but not 6 because range is exclusive of the stop value. You might think that i was a bad (or lazy) choice of a variable name (and depending on the use, it may very well be), but it is very common to see  as a loop variable in almost all programming languages.
+# ╔═╡ 4273e03f-2590-41e2-ada5-ee62f6123b21
+#In Julia, you can achieve random sampling without replacement from a consecutive range of integers using the randperm function. Here's how you can do it for your example:
 
-#We can also pass an optional 3rd argument to the range() function allowing us to specify a step -- how much we want to increase our looping value by each time. Let's look at the same code, but instead using a step value of 2.
-
-
-
-# ╔═╡ 4e1a8baf-ca0c-4769-a40b-b9fe7300f67b
+# ╔═╡ a7158cbb-f86c-4ab8-afeb-894d6868e3b2
 begin
-	tot1 = 0
-	for i in 0:2:5
-	    tot1 += i
-	    println("added", i, " tot = ", tot1)
-	end
+	# Define the range of integers
+	start = 1
+	stop = 100
 	
+	# Number of samples to select
+	m = 20
+
+	# Create a random number generator
+    rng = Random.default_rng()
+	
+	# Generate random indices without replacement
+	indices2 = randperm(rng, stop - start + 1)[1:m]
+	
+	# Map the indices to the desired range of integers
+	nums2 = start .+ indices2 .- 1
+	
+	println(nums2)
 end
 
-# ╔═╡ 420e1bbc-a01d-419a-b1fe-af854471774e
-#Notice that i now took on the values, skipping all of the odd values. We could have gotten just the odd values (not even) by adjusting our start value to be 1.
+# ╔═╡ 84e3bd68-2c0d-4d1d-a750-6e4b21269d08
+#Random Choices with Replacement
 
-# ╔═╡ 4e22124f-fd0f-4e18-b094-48a7af2109b5
+# ╔═╡ 62ae4990-62b4-49d0-a2e8-e9768cf79e75
+#In Julia, you can achieve similar functionality using the rand() function. Here's how you can simulate rolling 8 10-sided dice in Julia:
+
+# ╔═╡ 9f7d0d47-c752-44da-a66a-00b6c3439303
 begin
-	tot2 = 0
-	for i in 1:2:5
-	    tot2 += i
-	    println("added", i, " tot = ", tot2)
-	end
+	# Define the number of dice and sides
+	num_dice = 8
+	num_sides = 10
+	
+	# Simulate rolling the dice
+	rolls = rand(1:num_sides, num_dice)
+	
+	# Print the results
+	println(rolls)
 	
 end
 
-# ╔═╡ edd94e5f-5b16-4eb6-b3ab-9a2ca788f383
-#Let's look at an example of looping through a list. Suppose we have a list of temperatures in Fahrenheit that we wish to convert to Celsius. We first start by creating a function to convert a single temperature, and then we loop through the list and call the function for each value:
+# ╔═╡ 66921d6c-cadd-4868-a458-d916a212a6f6
+#In Julia, you can achieve similar functionality to the Python random.choices function with weights using the Random.choices() function. Here's how you can simulate 10 flips of an unfair coin that lands heads 80% of the time and tails 20% of the time in Julia:
 
-
-# ╔═╡ d6c48696-5df9-4299-aebf-18f6ef803d2f
+# ╔═╡ 0e11f520-eb8e-4dac-9cc7-87aef8e7ee00
 begin
-	function fahrenheit_to_celsius(ftemp)
-	    ctemp = (ftemp - 32) * 5/9
-	    return ctemp
-	end
+	# Define the choices and their weights
+	choices = ['H', 'T']
+	weights = [0.8, 0.2]
 	
-	temps = [0, 32, 50, 70, 90]
+	# Simulate the coin flips
+	flips = [choices[findfirst(x -> x > rand(), cumsum(weights))][1] for _ in 1:10]
 	
-	for ftemp in temps
-	    ctemp = fahrenheit_to_celsius(ftemp)
-	    println(ctemp)
-	end
+	# Print the results
+	println(flips)
 	
 end
 
-# ╔═╡ 1e8f3d5f-64c3-4e85-8617-790d46a9c33c
-#break statement: Use "break" to exit out of the innermost enclosing "for" or "while" loop prematurely. It's often used within a conditional check to break the loop when something specific occurs.
+# ╔═╡ e814e738-1684-4299-bd06-239df827fe45
+#Randomly Permuting Order of Items
 
-#continue statement: The "continue" statement allows you to skip the remaining code in the current iteration of a loop and jump to the next iteration. This is useful when you want to avoid unnecessary work within a loop based on certain conditions.
-
-#These statements are helpful for controlling the flow of your loops and are particularly useful in more complex scenarios.
-
-# ╔═╡ 6efc74a8-15de-4bb8-ba55-20ca13f2620b
+# ╔═╡ 90113e79-6ed7-4469-aee6-c51520b3454d
 begin
-	balance1 = 1000
-	atm_limit = 5
-	withdrawl_amount = 50
+
+# Define a deck of cards (ignoring suit)
+cards = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
+deck = [card for card in cards for _ in 1:4]
+
+# Shuffle the deck in-place
+shuffle!(deck)
+
+# Print the shuffled deck
+println(deck)
+end
+
+# ╔═╡ 1605f8d9-f209-4f7f-98b0-51331a348d8e
+begin
+	# Shuffle the deck in-place
+	shuffle!(deck)
 	
-	while balance1 > 0
-	    if atm_limit == 0
-	        break
-	    else
-	        atm_limit -= 1
-	        balance1 -= withdrawl_amount
-	    end
-	end
-	
-	println(balance1)
+	# Print the shuffled deck
+	println(deck)
 	
 end
 
-# ╔═╡ fa09b863-59c4-4fae-8a3b-1cc5f237e733
-for i in -5:5
-    if i == 0
-        continue
-    end
-    println(1 / i)
-end
+# ╔═╡ 00000000-0000-0000-0000-000000000001
+PLUTO_PROJECT_TOML_CONTENTS = """
+[deps]
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+"""
 
+# ╔═╡ 00000000-0000-0000-0000-000000000002
+PLUTO_MANIFEST_TOML_CONTENTS = """
+# This file is machine-generated - editing it directly is not advised
 
-# ╔═╡ b75755c0-0a80-435d-b98a-e4c86a8b9f4a
-# Introduction:
-# We are using nested for loops to print a triangle of 'z's. 
-# The outer loop controls the number of rows, while the inner loop
-# adds 'z's to each row based on the row number.
+julia_version = "1.9.3"
+manifest_format = "2.0"
+project_hash = "fa3e19418881bf344f5796e1504923a7c80ab1ed"
 
-for r in 1:5
-    for c in 1:r
-        print("z ")  # Adds a single 'z' to this row
-    end
-    println()  # Adds a newline after all 'z's in this row
-end
+[[deps.Random]]
+deps = ["SHA", "Serialization"]
+uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
-# ╔═╡ be9b204f-6419-441b-9a94-3ea63789619c
+[[deps.SHA]]
+uuid = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+version = "0.7.0"
 
+[[deps.Serialization]]
+uuid = "9e88b42a-f829-5b0c-bbe9-9e923198166b"
+"""
 
 # ╔═╡ Cell order:
-# ╠═397c92b0-553f-11ee-3cbf-55f2f86c3682
-# ╠═eca51be4-c289-4ab9-bb8f-0fe64e97655f
-# ╠═136b8793-c977-4a4e-a7d4-4c79a5211ec0
-# ╠═6661713b-56a5-49eb-aecf-512e2ec5282e
-# ╠═3e10fc77-50c3-44ff-90e4-ebe5ab936269
-# ╠═0efae747-428c-402c-9d4a-6a5cdb65a6ac
-# ╠═7f1f872d-7adb-43bc-b4d8-92dceb184f11
-# ╠═62abd8c4-d598-450a-904f-b4cfc62ac177
-# ╠═8974fa5e-207c-44ba-8127-a5fba729cdf9
-# ╠═91dc1414-3ad0-4c5a-8683-558cc87e0f11
-# ╠═4d2c4cd2-f9fe-41d5-aa60-7397e7bc2ec6
-# ╠═4a468da9-b1d7-45b5-9285-7296c94b7d93
-# ╠═f5a4ce98-86ee-4df0-b58a-ca483bf7d268
-# ╠═f7793643-eaa6-44d1-bc5d-2950f14de736
-# ╠═4ccb4a50-964b-4684-bd99-064f41303137
-# ╠═22e9bd21-6113-4c3e-8dd4-beef06728ce7
-# ╠═ce9427d8-8f51-4903-82eb-2b5641ec18fa
-# ╠═4e1a8baf-ca0c-4769-a40b-b9fe7300f67b
-# ╠═420e1bbc-a01d-419a-b1fe-af854471774e
-# ╠═4e22124f-fd0f-4e18-b094-48a7af2109b5
-# ╠═edd94e5f-5b16-4eb6-b3ab-9a2ca788f383
-# ╠═d6c48696-5df9-4299-aebf-18f6ef803d2f
-# ╠═1e8f3d5f-64c3-4e85-8617-790d46a9c33c
-# ╠═6efc74a8-15de-4bb8-ba55-20ca13f2620b
-# ╠═fa09b863-59c4-4fae-8a3b-1cc5f237e733
-# ╠═b75755c0-0a80-435d-b98a-e4c86a8b9f4a
-# ╠═be9b204f-6419-441b-9a94-3ea63789619c
+# ╠═0b73ecf0-5bbc-11ee-1b47-6d66933f6971
+# ╠═cd407dc6-fbd0-45c7-a871-cb359f6eafd9
+# ╠═2bf54ecb-6ce8-4dbe-8b51-90bb38c0c63a
+# ╠═7ef5ce1d-f8e4-44eb-854c-1f7b8a719f00
+# ╠═e2c175c8-d2f6-4512-a61a-7a0ba543965d
+# ╠═8061a35a-56c0-49c4-9a5a-a4a0deb66fe0
+# ╠═1ad75f1f-4c2b-48d7-bf2b-acaf290624be
+# ╠═6772d3f5-2887-418c-af20-0ea231c531af
+# ╠═99a71dc4-cb75-4d5d-9131-6e598858439d
+# ╠═a04bb6da-045a-42a4-868d-4e3b591ea171
+# ╠═d2bfe3c6-ccd7-4da6-a51b-d409ac9ba592
+# ╠═2c9288f8-d235-4239-b50a-c8f969678d07
+# ╠═71506b30-e88d-4b5a-b28b-e9d57cd85e59
+# ╠═c831cf0b-f199-4666-857d-2053abd1545c
+# ╠═ef253489-fc45-4615-9c1c-511418f13750
+# ╠═c8a18f7d-74ce-430b-b3d7-7fe1e5d023b7
+# ╠═04efc640-0728-46d9-8cc7-0f508d94f5f3
+# ╠═e0053d27-ad77-4682-8c84-c37f86e9d850
+# ╠═84ad8d12-67dd-4106-bad9-2601f1df379a
+# ╠═e5e5343c-e5e0-4371-9233-ae239b976116
+# ╠═28202373-133f-495a-a6bb-560aa8829d58
+# ╠═d9eb6741-b448-4480-8954-f126213a7552
+# ╠═559d8b91-e651-4df2-ba50-9d1da131d371
+# ╠═874872e1-4021-41f5-9a3a-e9b39b042674
+# ╠═ae68ed24-79e0-40c0-8377-5f2eceaa054b
+# ╠═c2740605-8731-432d-a319-af344b956b0d
+# ╠═ab1a25c0-8eac-4626-866e-c3c00fb02dcd
+# ╠═fd78989a-2fd4-46ff-824f-d5139b0cce62
+# ╠═acc1ab23-e13c-450a-b76f-303402c962b0
+# ╠═0fd70abb-c1d7-43f8-bfed-3acde21d8b8f
+# ╠═b7d41a18-32fe-46d1-9c24-73282b694214
+# ╠═b7c5a894-4901-40fa-b3f4-0555b0d9c1f3
+# ╠═0c025a2d-75b1-45e8-9f00-e5fa9167a258
+# ╠═798f9fb2-c00d-4b5d-8a7b-9f455ee70c9e
+# ╠═ab95d9a1-8049-4182-b466-8ae96d30ff69
+# ╠═5ae34092-9e79-486f-a6ae-dadd02a64a5a
+# ╠═0dee633a-07e8-4fc7-aea3-fa8608f7cc41
+# ╠═adcf7fac-92d8-4a4f-8ecb-c05b391b487c
+# ╠═e627a3e0-4ee8-4a5d-b3a0-b0425d6ebe72
+# ╠═e7780e39-f0c9-41f4-a528-4da814550f9f
+# ╠═c98a577a-2076-42f4-b548-6ff9336c9980
+# ╠═15c4d5e3-42af-4236-8d56-96b14e66f93a
+# ╠═3d392bb6-3469-4bb4-b745-55520f5ea310
+# ╠═cb1927d8-84e5-4fde-ae79-acab60862496
+# ╠═75705798-4f72-4cda-9129-ce7d3554487c
+# ╠═defe3d22-2e83-45b3-a048-a5c127844a2b
+# ╠═a53d2b26-69ef-44c9-8e69-cffbcb7691d2
+# ╠═63d635ee-9f54-4545-b00a-b16ea5c9883e
+# ╠═2e707bdc-6466-415f-8d18-dc6375b54c2b
+# ╠═173caa6f-3e11-4f62-9481-f0dd2d7c4ac7
+# ╠═27a561f0-14da-44da-9c8a-6cf9fcea391a
+# ╠═9256d43c-73f8-4a1f-be26-7f99f2cd1778
+# ╠═d27baca2-250a-4c26-82c5-3d4383229ba5
+# ╠═23e95ce7-cc2e-4b32-ae2b-d9a5104d1324
+# ╠═0639e686-52eb-4041-be8d-1d1b0aa70c0f
+# ╠═eaf24d52-bf92-4fe6-8aa9-cfd7c0aefb16
+# ╠═cb03f6ae-f7a3-4b78-97e3-0e34a5cd13d8
+# ╠═4273e03f-2590-41e2-ada5-ee62f6123b21
+# ╠═a7158cbb-f86c-4ab8-afeb-894d6868e3b2
+# ╠═84e3bd68-2c0d-4d1d-a750-6e4b21269d08
+# ╠═62ae4990-62b4-49d0-a2e8-e9768cf79e75
+# ╠═9f7d0d47-c752-44da-a66a-00b6c3439303
+# ╠═66921d6c-cadd-4868-a458-d916a212a6f6
+# ╠═0e11f520-eb8e-4dac-9cc7-87aef8e7ee00
+# ╠═e814e738-1684-4299-bd06-239df827fe45
+# ╠═90113e79-6ed7-4469-aee6-c51520b3454d
+# ╠═1605f8d9-f209-4f7f-98b0-51331a348d8e
+# ╟─00000000-0000-0000-0000-000000000001
+# ╟─00000000-0000-0000-0000-000000000002
