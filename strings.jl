@@ -388,21 +388,6 @@ In Julia, you can easily format floating-point numbers using the `@sprintf` macr
 You can adjust the format specifier to meet your specific formatting needs. The full range of formatting possibilities in Julia is described in the documentation, so you can achieve the desired output format effectively.
 """
 
-# ╔═╡ 20ae1011-7f42-47a8-8ae6-84fd0ff013f8
-begin
-	using Formatting
-	
-	smallnum = 1.2394498e-6
-	
-	# Scientific notation with 2 places after the decimal point
-	formatted_scientific = @sprintf("%11.2e", smallnum)
-	println(formatted_scientific)
-	
-	# Fixed point with 9 places after the decimal point
-	formatted_fixed = @sprintf("%11.9f", smallnum)
-	println(formatted_fixed)
-end
-
 # ╔═╡ Cell order:
 # ╠═f6667d90-644f-11ee-0b04-1b4f86e1b95b
 # ╠═c2e4cb33-c71c-44b9-b2d0-5ad4c0b819ee
@@ -445,4 +430,3 @@ end
 # ╠═10309124-7f5b-4dc2-adea-7809cb322451
 # ╠═239ada4c-5241-45d3-a4a9-21b79e3f092b
 # ╠═d755d716-e24c-41fc-ba4d-1c0bf60e8972
-# ╠═20ae1011-7f42-47a8-8ae6-84fd0ff013f8
