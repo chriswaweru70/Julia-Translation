@@ -173,14 +173,11 @@ As previously explored, the built-in function `len` can be utilized on strings t
 """
 
 # ╔═╡ c7a9c19b-2915-4015-b0bb-2a65e82d98fa
-# ╠═╡ disabled = true
-#=╠═╡
 begin
-	msg = "Python"
-	println(length(msg))
-	println("min is ", minimum(msg), " max is ", maximum(msg))
+	msg_ = "julia"
+	println(length(msg_))
+	println("min is ", minimum(msg_), " max is ", maximum(msg_))
 end
-  ╠═╡ =#
 
 # ╔═╡ d72d719e-4031-4460-98a2-c27af08da3f1
 md"""
