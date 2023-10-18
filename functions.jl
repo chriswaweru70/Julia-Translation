@@ -368,8 +368,8 @@ end
 
 # ╔═╡ f52cc086-201a-4bd5-ae1d-a2e7775ab800
 begin
-	println("min =", min(x, y))
-	println("max =", max(x, y))
+	println("min =", min(u, v))
+	println("max =", max(u, v))
 	
 end
 
